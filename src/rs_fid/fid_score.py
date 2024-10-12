@@ -51,7 +51,7 @@ except ImportError:
         return x
 
 
-from rs_fid.inception import InceptionV3
+from rs_fid.inception import inception_v3
 
 parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
 parser.add_argument("--batch-size", type=int, default=50, help="Batch size to use")
@@ -69,7 +69,6 @@ parser.add_argument(
     "--dims",
     type=int,
     default=2048,
-    choices=list(InceptionV3.BLOCK_INDEX_BY_DIM),
     help=(
         "Dimensionality of Inception features to use. "
         "By default, uses pool3 features"
@@ -284,9 +283,7 @@ def calculate_fid_given_paths(paths, batch_size, device, dims, num_workers=1):
         if not os.path.exists(p):
             raise RuntimeError("Invalid path: %s" % p)
 
-    block_idx = InceptionV3.BLOCK_INDEX_BY_DIM[dims]
-
-    model = InceptionV3([block_idx]).to(device)
+    model = inception_v3(pretrained=True, transform_input=True, num_classes=30).to(device)
 
     m1, s1 = compute_statistics_of_path(
         paths[0], model, batch_size, dims, device, num_workers
@@ -307,9 +304,7 @@ def save_fid_stats(paths, batch_size, device, dims, num_workers=1):
     if os.path.exists(paths[1]):
         raise RuntimeError("Existing output file: %s" % paths[1])
 
-    block_idx = InceptionV3.BLOCK_INDEX_BY_DIM[dims]
-
-    model = InceptionV3([block_idx]).to(device)
+    model = inception_v3(pretrained=True, transform_input=True, num_classes=30).to(device)
 
     print(f"Saving statistics for {paths[0]}")
 
