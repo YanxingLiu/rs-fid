@@ -15,5 +15,5 @@ pip install -v -e .
 
 ## Usage
 ```bash
-python -m pytorch_fid path/to/dataset1 path/to/dataset2
+python -m rs_fid path/to/dataset1 path/to/dataset2
 ```
