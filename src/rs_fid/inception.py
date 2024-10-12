@@ -9,8 +9,7 @@ except ImportError:
     from torch.utils.model_zoo import load_url as load_state_dict_from_url
 
 # Inception weights ported to Pytorch from
-# http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz
-FID_WEIGHTS_URL = "https://github.com/mseitzer/pytorch-fid/releases/download/fid_weights/pt_inception-2015-12-05-6726825d.pth"  # noqa: E501
+FID_WEIGHTS_URL = "https://github.com/YanxingLiu/rs-fid/releases/download/2024.10.12/inception_rsicd.pth"  # noqa: E501
 
 
 class InceptionV3(nn.Module):

@@ -21,15 +21,15 @@ def get_version(rel_path):
 
 if __name__ == "__main__":
     setuptools.setup(
-        name="pytorch-fid",
-        version=get_version(os.path.join("src", "pytorch_fid", "__init__.py")),
-        author="Max Seitzer",
+        name="rs-fid",
+        version=get_version(os.path.join("src", "rs_fid", "__init__.py")),
+        author="Yanxing Liu",
         description=(
-            "Package for calculating Frechet Inception Distance (FID)" " using PyTorch"
+            "Package for calculating Frechet Inception Distance (FID) for RS images" " using PyTorch"
         ),
         long_description=read("README.md"),
         long_description_content_type="text/markdown",
-        url="https://github.com/mseitzer/pytorch-fid",
+        url="https://github.com/YanxingLiu/rs-fid",
         package_dir={"": "src"},
         packages=setuptools.find_packages(where="src"),
         classifiers=[
