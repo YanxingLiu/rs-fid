@@ -142,7 +142,11 @@ def get_activations(
         )
         batch_size = len(files)
 
-    dataset = ImagePathDataset(files, transforms=TF.ToTensor())
+    transforms = TF.Compose([
+        TF.Resize(size=(256,256)),            
+        TF.ToTensor(),
+        TF.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))])
+    dataset = ImagePathDataset(files, transforms)
     dataloader = torch.utils.data.DataLoader(
         dataset,
         batch_size=batch_size,
